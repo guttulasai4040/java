@@ -1,0 +1,30 @@
+class Tuple {
+    int first;
+    int second;
+    
+    public Tuple(int first, int second) {
+        this.first = first;
+        this.second = second;
+    }
+    
+    // Swap method using tuple unpacking
+    public static Tuple swap(Tuple tuple) {
+        return new Tuple(tuple.second, tuple.first);
+    }
+}
+
+public class SwapNumbers {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        
+        // Tuple packing
+        Tuple numbers = new Tuple(a, b);
+        
+        // Swap using tuple unpacking
+        numbers = Tuple.swap(numbers);
+        
+        // Print swapped numbers
+        System.out.println("After swapping: a = " + numbers.first + ", b = " + numbers.second);
+    }
+}
