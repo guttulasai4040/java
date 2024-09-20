@@ -1,0 +1,21 @@
+class MissingNums{
+        public static int nums(int[] num) {
+            int n = num.length + 1;
+
+             int expectedValue = n * (n + 1) / 2;
+            
+            int realValue = 0;
+            for(int nums : num) {
+                realValue += nums;
+            }
+             return expectedValue - realValue;
+        }
+        
+        public static void main(String[] args) {
+            int[] numbers = {1,2,3,5,6};
+            int result = nums(numbers);
+            
+            System.out.println(result);
+        }
+    
+}
