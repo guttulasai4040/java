@@ -1,0 +1,20 @@
+public class {
+    public static void main(String[] args) {
+        int num = 15;
+        int a = 0; 
+        int b = 1;
+        system.out.print( a + " , " b + " , ");
+        
+        int nextInt;
+        
+        for (int i = 2; i < num; i++) {
+            nextInt = a + b;
+            a = b;
+            b = nextInt;
+            
+            System.out.print(nextInt + ", " )
+        }
+        
+       
+    }
+}
