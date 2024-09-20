@@ -1,0 +1,13 @@
+class SumOfDigits{
+    public static void main(String[] args) {
+        int Digit = 12345;
+        int sum = 0;
+        
+        while(Digit != 0) {
+            sum += Digit % 10;
+            Digit = Digit / 10;
+        }
+        
+        System.out.println(sum);
+    }
+}
