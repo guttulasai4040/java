@@ -1,0 +1,11 @@
+class ReverseNum03{
+    public static void main(String[] args) {
+        String num1 = "987654321";
+        
+        StringBuilder str = new StringBuilder(num1);
+        
+        String reversed = str.reverse().toString();
+        
+        System.out.println(reversed);
+    }
+}
