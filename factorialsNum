@@ -1,0 +1,13 @@
+class FactorialsNumbers {
+    public static void main(String[] args) {
+        int number = 20;
+        System.out.println("The factorials of the numbers: " + number);
+        
+        
+        for(int i = 1; i < number; i++) {
+            if(number % i == 0) {
+                System.out.println(i);
+            }
+        }
+    }
+}
