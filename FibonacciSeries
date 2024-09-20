@@ -1,0 +1,18 @@
+public class FibonacciSeries {
+    public static void main(String[] args) {
+        int num = 15;  // Number of terms in the Fibonacci sequence
+        int a = 0; 
+        int b = 1;
+
+        System.out.print(a + " , " + b + " , ");  // Print the first two numbers
+
+        int nextInt;
+
+        for (int i = 2; i < num; i++) {
+            nextInt = a + b;  // Calculate the next number in the sequence
+            a = b;  // Update a to the previous b
+            b = nextInt;  // Update b to the new number
+            System.out.print(nextInt + " , ");  // Print the next number
+        }
+    }
+}
