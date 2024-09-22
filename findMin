@@ -1,0 +1,23 @@
+class FindMaxNum {
+    public static int maxNum(int[] nums) {
+        int max = nums[0];
+        for(int i = 1; i < nums.length; i++) {
+            if (nums[i] < max) {
+                max = nums[i];
+            }
+        }
+            return max;
+        
+    }
+    
+    public static void main(String[]  args) {
+        int[] numbers = {2,3,4,5,6,7,8,9};
+        
+        int result = maxNum(numbers);
+        
+       
+          System.out.println("The maximum number is:"  + result);
+      
+        
+    }
+}
