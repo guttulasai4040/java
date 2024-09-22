@@ -1,0 +1,20 @@
+class PalindromeCheck {
+    public static void main(String[] args) {
+        String word = "madam";
+        boolean isTrue = true;
+        int length = word.length() - 1;
+        
+        for(int i = 0; i <=   length/2; i++) {
+            if (word.charAt(i) != word.charAt(length - i - 1)) {
+                isTrue = false;
+                
+            }
+        }
+        
+       if (isTrue) {
+           System.out.println(word + "is palindrome");
+       } else {
+           System.out.println(word + "is not palindrome");
+       }
+    }
+}
