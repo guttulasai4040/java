@@ -1,0 +1,17 @@
+
+
+public class ArmStrongNumber {
+    public static void main(String[] args) {
+        int sum = 0;
+        int num = 200;
+        int temp = num;a
+       
+       while(num != 0) { 
+        int digit = num % 10;
+        sum += Math.pow(digit, 3);
+        num /=  10;
+       }
+        
+        System.out.println(temp == sum);
+    }
+}
