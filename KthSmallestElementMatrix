@@ -1,0 +1,44 @@
+import java.util.PriorityQueue;
+
+public class KthSmallestElementMatrix {
+    static class Element {
+        int value;
+        int row;
+        int col;
+
+        Element(int value, int row, int col) {
+            this.value = value;
+            this.row = row;
+            this.col = col;
+        }
+    }
+
+    public static int kthSmallest(int[][] matrix, int k) {
+        PriorityQueue<Element> minHeap = new PriorityQueue<>((a, b) -> a.value - b.value);
+        
+        // Add first element of each row into the heap
+        for (int i = 0; i < matrix.length; i++) {
+            minHeap.add(new Element(matrix[i][0], i, 0));
+        }
+
+        Element e = null;
+        for (int i = 0; i < k; i++) {
+            e = minHeap.poll();
+            if (e.col + 1 < matrix[0].length) {
+                minHeap.add(new Element(matrix[e.row][e.col + 1], e.row, e.col + 1));
+            }
+        }
+
+        return e.value;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 5, 9},
+            {10, 11, 13},
+            {12, 13, 15}
+        };
+        int k = 8;
+        System.out.println(k + "th smallest element is " + kthSmallest(matrix, k));
+    }
+}
