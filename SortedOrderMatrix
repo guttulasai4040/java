@@ -1,0 +1,30 @@
+import java.util.PriorityQueue;
+
+public class SortedOrderMatrix {
+    public static void sortedOrder(int[][] matrix) {
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+        for (int i = 0; i < matrix.length; i++) {
+            minHeap.add(new int[]{matrix[i][0], i, 0});
+        }
+
+        while (!minHeap.isEmpty()) {
+            int[] curr = minHeap.poll();
+            System.out.print(curr[0] + " ");
+            int row = curr[1], col = curr[2];
+
+            if (col + 1 < matrix[0].length) {
+                minHeap.add(new int[]{matrix[row][col + 1], row, col + 1});
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {10, 20, 30, 40},
+                {15, 25, 35, 45},
+                {27, 29, 37, 48},
+                {32, 33, 39, 50}
+        };
+        sortedOrder(matrix);
+    }
+}
