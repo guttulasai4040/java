@@ -1,0 +1,48 @@
+public class SpiralMatrixTraversal {
+    public static void spiralOrder(int[][] matrix) {
+        if (matrix.length == 0) return;
+
+        int rowStart = 0, rowEnd = matrix.length - 1;
+        int colStart = 0, colEnd = matrix[0].length - 1;
+
+        while (rowStart <= rowEnd && colStart <= colEnd) {
+            // Traverse right
+            for (int col = colStart; col <= colEnd; col++) {
+                System.out.print(matrix[rowStart][col] + " ");
+            }
+            rowStart++;
+
+            // Traverse down
+            for (int row = rowStart; row <= rowEnd; row++) {
+                System.out.print(matrix[row][colEnd] + " ");
+            }
+            colEnd--;
+
+            // Traverse left
+            if (rowStart <= rowEnd) {
+                for (int col = colEnd; col >= colStart; col--) {
+                    System.out.print(matrix[rowEnd][col] + " ");
+                }
+                rowEnd--;
+            }
+
+            // Traverse up
+            if (colStart <= colEnd) {
+                for (int row = rowEnd; row >= rowStart; row--) {
+                    System.out.print(matrix[row][colStart] + " ");
+                }
+                colStart++;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 16}
+        };
+        spiralOrder(matrix);
+    }
+}
