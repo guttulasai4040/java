@@ -1,0 +1,49 @@
+import java.util.Stack;
+
+public class MaxRectangle {
+    public static int maxHist(int[] row) {
+        Stack<Integer> result = new Stack<>();
+        int top, maxArea = 0, area, i = 0;
+
+        while (i < row.length) {
+            if (result.isEmpty() || row[result.peek()] <= row[i]) {
+                result.push(i++);
+            } else {
+                top = result.pop();
+                area = row[top] * (result.isEmpty() ? i : i - result.peek() - 1);
+                if (area > maxArea) maxArea = area;
+            }
+        }
+
+        while (!result.isEmpty()) {
+            top = result.pop();
+            area = row[top] * (result.isEmpty() ? i : i - result.peek() - 1);
+            if (area > maxArea) maxArea = area;
+        }
+
+        return maxArea;
+    }
+
+    public static int maxRectangle(int[][] matrix) {
+        int result = maxHist(matrix[0]);
+
+        for (int i = 1; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][j] == 1) matrix[i][j] += matrix[i - 1][j];
+            }
+            result = Math.max(result, maxHist(matrix[i]));
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {0, 1, 1, 0},
+                {1, 1, 1, 1},
+                {1, 1, 1, 1},
+                {1, 1, 0, 0}
+        };
+        System.out.println("Maximum size rectangle is " + maxRectangle(matrix));
+    }
+}
