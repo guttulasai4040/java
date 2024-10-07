@@ -1,0 +1,19 @@
+public class SplitBinaryString {
+    public static int splitBinaryString(String str) {
+        int count0 = 0, count1 = 0, count = 0;
+
+        for (char ch : str.toCharArray()) {
+            if (ch == '0') count0++;
+            else count1++;
+
+            if (count0 == count1) count++;
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        String str = "0100110101";
+        System.out.println("Maximum splits: " + splitBinaryString(str));
+    }
+}
