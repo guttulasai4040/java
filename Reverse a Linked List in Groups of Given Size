@@ -1,0 +1,69 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    Node reverseInGroups(Node head, int k) {
+        if (head == null) return null;
+
+        Node current = head;
+        Node prev = null;
+        Node next = null;
+        int count = 0;
+
+        // Reverse first k nodes
+        while (current != null && count < k) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+            count++;
+        }
+
+        // Next is now a pointer to (k+1)th node
+        if (next != null) {
+            head.next = reverseInGroups(next, k);
+        }
+
+        // prev is now the new head of the reversed group
+        return prev;
+    }
+
+    void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+// Example usage
+public class ReverseInGroups {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.head = new Node(1);
+        list.head.next = new Node(2);
+        list.head.next.next = new Node(3);
+        list.head.next.next.next = new Node(4);
+        list.head.next.next.next.next = new Node(5);
+
+        System.out.println("Original Linked List:");
+        list.printList();
+
+        int k = 3;
+        list.head = list.reverseInGroups(list.head, k);
+
+        System.out.println("Reversed in Groups of " + k + ":");
+        list.printList();
+    }
+}
