@@ -1,0 +1,60 @@
+import java.util.HashSet;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    void removeDuplicates() {
+        HashSet<Integer> seen = new HashSet<>();
+        Node current = head;
+        Node prev = null;
+
+        while (current != null) {
+            if (seen.contains(current.data)) {
+                prev.next = current.next; // Remove duplicate
+            } else {
+                seen.add(current.data);
+                prev = current; // Move to next node
+            }
+            current = current.next;
+        }
+    }
+
+    void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+// Example usage
+public class RemoveDuplicatesUnsorted {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.head = new Node(1);
+        list.head.next = new Node(2);
+        list.head.next.next = new Node(3);
+        list.head.next.next.next = new Node(1);
+        list.head.next.next.next.next = new Node(2);
+
+        System.out.println("Original Linked List:");
+        list.printList();
+
+        list.removeDuplicates();
+
+        System.out.println("Linked List after removing duplicates:");
+        list.printList();
+    }
+}
