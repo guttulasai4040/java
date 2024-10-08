@@ -1,0 +1,65 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    Node findStartOfLoop() {
+        Node slow = head;
+        Node fast = head;
+
+        // Detect loop using Floyd’s Cycle detection algorithm
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                // Loop detected; find the starting point
+                slow = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow; // Start of the loop
+            }
+        }
+        return null; // No loop
+    }
+
+    void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+// Example usage
+public class StartOfLoop {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.head = new Node(1);
+        list.head.next = new Node(2);
+        list.head.next.next = new Node(3);
+        list.head.next.next.next = new Node(4);
+        
+        // Creating a loop for testing
+        list.head.next.next.next.next = list.head.next; // Loop here
+
+        Node loopStart = list.findStartOfLoop();
+        if (loopStart != null) {
+            System.out.println("Start of the loop is at node with value: " + loopStart.data);
+        } else {
+            System.out.println("No loop detected.");
+        }
+    }
+}
