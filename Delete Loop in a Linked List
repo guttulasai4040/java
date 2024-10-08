@@ -1,0 +1,96 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    void deleteLoop(Node loopNode) {
+        Node ptr1 = loopNode;
+        Node ptr2 = loopNode;
+
+        int k = 1, i;
+
+        // Count the number of nodes in the loop
+        while (ptr1.next != ptr2) {
+            ptr1 = ptr1.next;
+            k++;
+        }
+
+        // Fix one pointer to the head
+        ptr1 = head;
+
+        // Move the other pointer k nodes ahead
+        ptr2 = head;
+        for (i = 0; i < k; i++) {
+            ptr2 = ptr2.next;
+        }
+
+        // Move both pointers until they meet
+        while (ptr2 != ptr1) {
+            ptr1 = ptr1.next;
+            ptr2 = ptr2.next;
+        }
+
+        // Now ptr1 (or ptr2) is at the start of the loop
+        while (ptr2.next != ptr1) {
+            ptr2 = ptr2.next;
+        }
+        ptr2.next = null; // Remove the loop
+    }
+
+    boolean hasLoop() {
+        Node slow = head;
+        Node fast = head;
+        Node loopNode = null;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            // If we meet at some point then there is a loop
+            if (slow == fast) {
+                loopNode = slow;
+                break;
+            }
+        }
+
+        if (loopNode != null) {
+            deleteLoop(loopNode);
+            return true;
+        }
+        return false;
+    }
+
+    void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+// Example usage
+public class DeleteLoop {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.head = new Node(1);
+        list.head.next = new Node(2);
+        list.head.next.next = new Node(3);
+        list.head.next.next.next = new Node(4);
+        
+        // Creating a loop for testing
+        list.head.next.next.next.next = list.head.next; // Loop here
+
+        System.out.println("Does the linked list have a loop? " + list.hasLoop());
+        list.printList(); // Should print without loop
+    }
+}
