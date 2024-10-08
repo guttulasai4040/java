@@ -1,0 +1,61 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    void moveLastToFront() {
+        if (head == null || head.next == null) return;
+
+        Node secondLast = null;
+        Node last = head;
+
+        // Traverse to the last node
+        while (last.next != null) {
+            secondLast = last;
+            last = last.next;
+        }
+
+        // Change next of second last
+        secondLast.next = null;
+
+        // Move last to front
+        last.next = head;
+        head = last;
+    }
+
+    void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+// Example usage
+public class MoveLastToFront {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.head = new Node(1);
+        list.head.next = new Node(2);
+        list.head.next.next = new Node(3);
+        list.head.next.next.next = new Node(4);
+
+        System.out.println("Original Linked List:");
+        list.printList();
+
+        list.moveLastToFront();
+
+        System.out.println("Linked List after moving last to front:");
+        list.printList();
+    }
+}
