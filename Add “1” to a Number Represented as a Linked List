@@ -1,0 +1,75 @@
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class LinkedList {
+    Node head;
+
+    Node addOne() {
+        head = reverse(head);
+        Node current = head;
+        int carry = 1;
+
+        while (current != null && carry != 0) {
+            int sum = current.data + carry;
+            carry = sum / 10;
+            current.data = sum % 10;
+            current = current.next;
+        }
+
+        if (carry > 0) {
+            Node newNode = new Node(carry);
+            newNode.next = head;
+            head = newNode;
+        }
+
+        return reverse(head);
+    }
+
+    Node reverse(Node head) {
+        Node prev = null;
+        Node current = head;
+        Node next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
+    }
+
+    void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+}
+
+// Example usage
+public class AddOneToLinkedList {
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.head = new Node(9);
+        list.head.next = new Node(9);
+        list.head.next.next = new Node(9);
+
+        System.out.println("Original Linked List:");
+        list.printList();
+
+        list.head = list.addOne();
+
+        System.out.println("Linked List after adding 1:");
+        list.printList();
+    }
+}
