@@ -1,0 +1,19 @@
+public class MaxProductSubarray {
+    public static int maxProduct(int[] arr) {
+        int maxSoFar = arr[0], minSoFar = arr[0], result = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            int temp = maxSoFar;
+            maxSoFar = Math.max(arr[i], Math.max(maxSoFar * arr[i], minSoFar * arr[i]));
+            minSoFar = Math.min(arr[i], Math.min(temp * arr[i], minSoFar * arr[i]));
+            result = Math.max(result, maxSoFar);
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {2, 3, -2, 4};
+        System.out.println("Maximum product subarray: " + maxProduct(arr));
+    }
+}
