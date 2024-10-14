@@ -1,0 +1,23 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+class FindWinnerOfCircularGame {
+    public int findTheWinner(int n, int k) {
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 1; i <= n; i++) {
+            queue.offer(i);
+        }
+        while (queue.size() > 1) {
+            for (int i = 0; i < k - 1; i++) {
+                queue.offer(queue.poll());
+            }
+            queue.poll(); // Eliminate the k-th player
+        }
+        return queue.peek();
+    }
+
+    public static void main(String[] args) {
+        FindWinnerOfCircularGame solution = new FindWinnerOfCircularGame();
+        System.out.println(solution.findTheWinner(5, 2)); // Output: 3
+    }
+}
