@@ -1,0 +1,33 @@
+import java.util.Stack;
+
+public class QueueWithTwoStacks<T> {
+    private Stack<T> stack1 = new Stack<>();
+    private Stack<T> stack2 = new Stack<>();
+
+    public void enqueue(T item) {
+        stack1.push(item);
+    }
+
+    public T dequeue() {
+        if (stack2.isEmpty()) {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop());
+            }
+        }
+        if (stack2.isEmpty()) {
+            throw new IllegalStateException("Queue is empty.");
+        }
+        return stack2.pop();
+    }
+
+    public static void main(String[] args) {
+        QueueWithTwoStacks<Integer> queue = new QueueWithTwoStacks<>();
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+
+        System.out.println(queue.dequeue()); // Outputs 1
+        System.out.println(queue.dequeue()); // Outputs 2
+        System.out.println(queue.dequeue()); // Outputs 3
+    }
+}
