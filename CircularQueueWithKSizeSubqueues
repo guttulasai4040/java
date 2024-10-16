@@ -1,0 +1,48 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class CircularQueueWithKSizeSubqueues<T> {
+    private Queue<T>[] subqueues;
+    private int subqueueSize;
+    private int currentSubqueue;
+
+    public CircularQueueWithKSizeSubqueues(int numberOfSubqueues, int subqueueSize) {
+        subqueues = new Queue[numberOfSubqueues];
+        for (int i = 0; i < numberOfSubqueues; i++) {
+            subqueues[i] = new LinkedList<>();
+        }
+        this.subqueueSize = subqueueSize;
+        currentSubqueue = 0;
+    }
+
+    public void enqueue(T item) {
+        if (subqueues[currentSubqueue].size() < subqueueSize) {
+            subqueues[currentSubqueue].offer(item);
+        } else {
+            currentSubqueue = (currentSubqueue + 1) % subqueues.length;
+            subqueues[currentSubqueue].offer(item);
+        }
+    }
+
+    public T dequeue() {
+        for (int i = 0; i < subqueues.length; i++) {
+            int subqueueIndex = (currentSubqueue + i) % subqueues.length;
+            if (!subqueues[subqueueIndex].isEmpty()) {
+                return subqueues[subqueueIndex].poll();
+            }
+        }
+        System.out.println("Queue is empty.");
+        return null;
+    }
+
+    public static void main(String[] args) {
+        CircularQueueWithKSizeSubqueues<Integer> queue = new CircularQueueWithKSizeSubqueues<>(3, 2);
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(5);
+        System.out.println(queue.dequeue()); // Outputs 1
+        System.out.println(queue.dequeue()); // Outputs 2
+    }
+}
