@@ -1,0 +1,65 @@
+public class CircularQueueDynamic<T> {
+    private Object[] queue;
+    private int front;
+    private int rear;
+    private int size;
+    private int capacity;
+
+    public CircularQueueDynamic(int initialCapacity) {
+        this.capacity = initialCapacity;
+        queue = new Object[initialCapacity];
+        front = 0;
+        rear = -1;
+        size = 0;
+    }
+
+    public void enqueue(T item) {
+        if (isFull()) {
+            // Expand the capacity of the queue dynamically
+            int newCapacity = capacity * 2;
+            Object[] newQueue = new Object[newCapacity];
+            int i = 0;
+            while (!isEmpty()) {
+                newQueue[i] = queue[front];
+                front = (front + 1) % capacity;
+                i++;
+            }
+            front = 0;
+            rear = capacity - 1;
+            capacity = newCapacity;
+            queue = newQueue;
+        }
+        rear = (rear + 1) % capacity;
+        queue[rear] = item;
+        size++;
+    }
+
+    public T dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty.");
+            return null;
+        }
+        T item = (T) queue[front];
+        front = (front + 1) % capacity;
+        size--;
+        return item;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == capacity;
+    }
+
+    public static void main(String[] args) {
+        CircularQueueDynamic<Integer> queue = new CircularQueueDynamic<>(3);
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4); // Capacity is dynamically expanded
+        System.out.println(queue.dequeue()); // Outputs 1
+        System.out.println(queue.dequeue()); // Outputs 2
+    }
+}
