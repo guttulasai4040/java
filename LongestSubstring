@@ -1,0 +1,42 @@
+import java.util.HashMap;
+
+public class LongestSubstring {
+    public static int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+
+        int n = s.length();
+        int maxLength = 0;
+        int left = 0;
+        HashMap<Character, Integer> charIndexMap = new HashMap<>();
+
+        for (int right = 0; right < n; right++) {
+            char currentChar = s.charAt(right);
+
+            if (charIndexMap.containsKey(currentChar)) {
+                // Move the left pointer to the right of the last occurrence of the character
+                left = Math.max(left, charIndexMap.get(currentChar) + 1);
+            }
+
+            charIndexMap.put(currentChar, right);
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        String input1 = "abcabcbb";
+        System.out.println("Input: " + input1);
+        System.out.println("Output: " + lengthOfLongestSubstring(input1));
+
+        String input2 = "bbbbb";
+        System.out.println("\nInput: " + input2);
+        System.out.println("Output: " + lengthOfLongestSubstring(input2));
+
+        String input3 = "pwwkew";
+        System.out.println("\nInput: " + input3);
+        System.out.println("Output: " + lengthOfLongestSubstring(input3));
+    }
+}
