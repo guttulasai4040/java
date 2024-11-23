@@ -1,0 +1,34 @@
+class Solution {
+    public String minRemoveToMakeValid(String s) {
+        StringBuilder sb = new StringBuilder();
+        int openCount = 0;
+
+        // First pass: Remove invalid ')'
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                openCount++;
+            } else if (c == ')') {
+                if (openCount == 0) continue; // Skip invalid ')'
+                openCount--;
+            }
+            sb.append(c); // Append valid characters
+        }
+
+        // Second pass: Remove invalid '('
+        StringBuilder result = new StringBuilder();
+        int balance = 0;
+        for (int i = sb.length() - 1; i >= 0; i--) {
+            char c = sb.charAt(i);
+            if (c == '(') {
+                if (balance == 0) continue; // Skip invalid '('
+                balance--;
+            } else if (c == ')') {
+                balance++;
+            }
+            result.append(c); // Append valid characters
+        }
+
+        // Reverse the result to get the final valid string
+        return result.reverse().toString();
+    }
+}
