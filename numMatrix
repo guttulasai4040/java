@@ -1,0 +1,30 @@
+class Main{
+    public static int[] SearchElement(int[][] arr, int target){
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr[i].length;j++){
+                if(arr[i][j] == target){
+                    return new int[]{i,j};
+                }
+            }
+        }
+        return null;
+    }
+    
+    public static void main(String[] args){
+        int[][] data = {
+                {1,2,3,4},
+                {5,6,7,8},
+                {9,10,-1,0},
+            };
+            
+            int target1 =-1;
+            
+            int[] result =SearchElement(data, target1);
+        
+        if (result != null) {
+            System.out.println("number in the matrix");
+        } else {
+            System.out.println("not in matrix");
+        }
+    }
+}
