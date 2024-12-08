@@ -1,0 +1,24 @@
+// check anangram
+import java.util.Arrays;
+
+class Main{
+    public static void main(String[] args){
+        String n ="saiguttula";
+        String n1 ="saiguttula";
+        
+        if(n.length() != n1.length()){
+            System.out.println("Not anagram");
+        }
+        
+        char[] a1= n.toCharArray();
+        char[] a2 = n1.toCharArray();
+        
+        Arrays.sort(a1);
+        Arrays.sort(a2);
+        if(Arrays.equals(a1,a2)){
+            System.out.println("yes");
+        } else {
+            System.out.println("no");
+        }
+    }
+}
