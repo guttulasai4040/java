@@ -1,0 +1,25 @@
+
+class Main{
+   public static int Parenthess(String symbol){
+    int maxDepth =0;
+    int currentDepth =0;
+    
+    for(char ch: symbol.toCharArray()) {
+        if(ch == '(' ) {
+            currentDepth++;
+            maxDepth = Math.max(maxDepth, currentDepth);
+        } else if (ch == ')') {
+             currentDepth--;            
+        }
+    }
+    return maxDepth;
+}
+
+ public static void main(String[] args){
+     String par = "(())";
+     
+     int num = Parenthess(par);
+     
+     System.out.println(num);
+      }
+}
