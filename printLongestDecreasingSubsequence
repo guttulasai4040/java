@@ -1,0 +1,36 @@
+public class LongestDecreasingSubsequence {
+
+    public static void printLongestDecreasingSubsequence(int[] arr) {
+        if (arr.length == 0) return;
+
+        int maxLength = 1;
+        int currentLength = 1;
+        int start = 0;
+        int maxStart = 0;
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[i - 1]) {
+                currentLength++;
+                if (currentLength > maxLength) {
+                    maxLength = currentLength;
+                    maxStart = start;
+                }
+            } else {
+                currentLength = 1;
+                start = i;
+            }
+        }
+
+        // Output the longest decreasing subsequence
+        System.out.print("Longest Decreasing Subsequence: ");
+        for (int i = maxStart; i < maxStart + maxLength; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int[] array = {9, 8, 4, 5, 3, 2, 1, 10, 6, 5, 4};
+        printLongestDecreasingSubsequence(array);
+    }
+}
