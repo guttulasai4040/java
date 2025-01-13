@@ -1,0 +1,8 @@
+class Main{
+    public static void main(String[] args){
+        String str = "ABCDEFJH";
+        for(char c: str.toCharArray()){
+            System.out.print(" " + (int)c);
+        }
+    }
+}
