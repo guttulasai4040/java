@@ -1,0 +1,37 @@
+import java.util.Arrays;
+
+class Main{
+    public static void main(String[] args){
+        int[] ar = {1,0,2,0,2,1,2,0,0,2};
+        int[] arr = new int[ar.length];
+        int zero =0;
+        int one = 0;
+        int two = 0;
+        for(int i: ar){
+            if(i == 0) zero++;
+            if(i == 1) one++;
+            if(i == 2) two++;
+        }
+        
+          int index =0;
+       
+            for(int i=0;i<zero;i++){
+                arr[index++] = 0;
+                
+            }
+            
+            for(int i=0;i<one;i++){
+                arr[index++] = 1;
+                
+            }
+            
+            for(int i=0;i<two;i++){
+                arr[index++] = 2;
+                
+            }
+           
+        
+    
+        System.out.println(Arrays.toString(arr)); 
+    }
+}
