@@ -1,0 +1,18 @@
+import java.util.Set;
+import java.util.HashSet;
+//remove duplicate strings form sentence
+class Main{
+    public static void main(String[] args){
+        String str = "hey iam iam sai guttula";
+        Set<String> sen = new HashSet<>();
+        String[] words = str.split(" ");
+        
+        for(String i: words){
+            sen.add(i);
+        }
+        
+        for(String j : sen){
+            System.out.print(j + " ");
+        }
+    }
+}
