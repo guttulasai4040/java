@@ -1,0 +1,19 @@
+class Main{
+    public static void main(String[] args){
+        char c = 'a';
+        String str= "saisaisiaiaiaiai";
+        int result = count(c, str);
+        System.out.println(result);
+    }
+    
+    public static int count(char i, String stri){
+        int count = 0;
+        char[] ch = stri.toCharArray();
+           for(char c : ch){
+        if(i == c){
+            count++;
+        }
+    }
+        return count;
+    }
+}
