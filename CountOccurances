@@ -1,0 +1,16 @@
+import java.util.HashMap;
+
+class Main{
+    public static void main(String[] args){
+        int[] arr={1,2,2,3,2,4,5,6,7,9};
+        HashMap<Integer, Integer> num = new HashMap<>();
+        for(int i:arr){
+            num.put(i, num.getOrDefault(i,0)+1);
+        }
+        for(HashMap.Entry<Integer, Integer> hm: num.entrySet()){
+            if(hm.getValue() >1){
+                System.out.print(hm.getKey()+ " ");
+            }
+        }
+    }
+}
