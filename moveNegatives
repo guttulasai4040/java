@@ -1,0 +1,33 @@
+class Main {
+    public static void moveNegatives(int[] arr) {
+        int left = 0, right = arr.length - 1;
+
+        while (left <= right) {
+            if (arr[left] < 0 && arr[right] > 0) {
+                left++;
+                right--;
+            } else if (arr[left] > 0 && arr[right] < 0) {
+                swap(arr, left++, right--);
+            } else if (arr[left] < 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, -2, 3, -4, -5, 6, -7, 8};
+        moveNegatives(arr);
+        System.out.println("Array after moving negatives: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
