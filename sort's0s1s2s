@@ -1,0 +1,39 @@
+class Main{
+    public static void main(String[] args){
+        int[] arr={0,1,1,1,1,1,0,0,0,2,2,2,0};
+        int zero=0;
+        int one=0;
+        int two=0;
+        for(int n: arr){
+           if(n==0){
+               zero++;
+           }  else if(n==1){
+               one++;
+           } else if(n==2) {
+               two++;
+           }
+        }
+       int n= arr.length;
+        int[] arr1 = new int[n];
+        int index=0;
+        
+        while(zero!=0){
+            arr1[index++] = 0;
+            zero--;
+        }
+        
+        while(one!=0){
+            arr1[index++] = 1;
+            one--;
+        }
+        
+        while(two!=0){
+            arr1[index++] = 2;
+            two--;
+        }
+        
+        for(int i: arr1){
+            System.out.print(i+ " ");
+        }
+    }
+}
