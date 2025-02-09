@@ -1,0 +1,16 @@
+class Main{
+    public static void main(String[] args){
+        int sum=1;
+        int num=6;
+        for(int i=2;i<=num/2;i++){
+            if(num%i==0){
+                sum+=i;
+            }
+        }
+        if(sum == num){
+            System.out.println("It is perfect Num");
+        } else {
+            System.out.println("It not perfect Number");
+        }
+    }
+}
