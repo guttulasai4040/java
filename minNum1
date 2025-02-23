@@ -1,0 +1,23 @@
+import java.util.Scanner; 
+
+class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter of size of the array: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        
+        System.out.println("Enter numbers in array: ");
+        for(int i=0;i<arr.length;i++){
+            arr[i]=sc.nextInt();
+        }
+        
+        int min=arr[0];
+        for(int j=0;j<arr.length;j++){
+            if(arr[j]>min){
+                min=arr[j];
+            }
+        }
+        System.out.println("min number in array: "+ min);
+    }
+}
