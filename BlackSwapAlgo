@@ -1,0 +1,53 @@
+import java.util.Scanner;
+
+public class BlockSwapRotation {
+    public static void swap(int[] arr, int start, int end, int k) {
+        for (int i = 0; i < k; i++) {
+            int temp = arr[start + i];
+            arr[start + i] = arr[end + i];
+            arr[end + i] = temp;
+        }
+    }
+
+    public static void rotate(int[] arr, int d, int n) {
+        if (d == 0 || d == n) return;
+        if (d > n) d = d % n;
+
+        int i = d, j = n - d;
+        while (i != j) {
+            if (i < j) {
+                swap(arr, d - i, d + j - i, i);
+                j -= i;
+            } else {
+                swap(arr, d - i, d, j);
+                i -= j;
+            }
+        }
+        swap(arr, d - i, d, i);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of the array: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        System.out.print("Enter the number of rotations: ");
+        int k = scanner.nextInt();
+
+        rotate(arr, k, n);
+
+        System.out.println("Array after rotation:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+
+        scanner.close();
+    }
+}
