@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+class Main{
+    public static boolean Ispalindrome(int num){
+        int reverse=0;
+        int org=num;
+        
+        while(num!=0){
+            int digit=num%10;
+            reverse = reverse*10+digit;
+            num /= 10;
+        }
+        
+        return org==reverse;
+    }
+    
+    public static int nextPalindrome(int n){
+        while(true){
+            n++;
+            if(Ispalindrome(n)){
+                return n;
+            }
+        }
+    }
+    
+    public static void main(String[] args){
+     Scanner sc = new Scanner(System.in);
+     int number= sc.nextInt();
+     
+     System.out.println("Next palindrome "+ nextPalindrome(number));
+    }
+}
