@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class UniqueDigitNumbers {
+    public static boolean hasUniqueDigits(int num) {
+        String strNum = String.valueOf(num);
+        Set<Character> digitSet = new HashSet<>();
+        
+        for (char ch : strNum.toCharArray()) {
+            if (!digitSet.add(ch)) { // If digit is already present, return false
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input array size
+        System.out.print("Enter the number of elements: ");
+        int n = scanner.nextInt();
+
+        int[] numbers = new int[n];
+
+        // Input numbers
+        System.out.println("Enter the numbers:");
+        for (int i = 0; i < n; i++) {
+            numbers[i] = scanner.nextInt();
+        }
+        
+        scanner.close();
+
+        System.out.println("Numbers with unique digits:");
+        for (int num : numbers) {
+            if (hasUniqueDigits(num)) {
+                System.out.println(num);
+            }
+        }
+    }
+}
