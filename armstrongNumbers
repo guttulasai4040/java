@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class ArmstrongNumbersInRange {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the range (start and end): ");
+        int start = scanner.nextInt();
+        int end = scanner.nextInt();
+
+        System.out.println("Armstrong Numbers in the range " + start + " to " + end + ":");
+        for (int num = start; num <= end; num++) {
+            int sum = 0, temp = num, digits = 0;
+
+            while (temp != 0) {
+                temp /= 10;
+                digits++;
+            }
+
+            temp = num;
+            while (temp != 0) {
+                int digit = temp % 10;
+                sum += Math.pow(digit, digits);
+                temp /= 10;
+            }
+
+            if (sum == num) {
+                System.out.print(num + " ");
+            }
+        }
+    }
+}
