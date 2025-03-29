@@ -1,0 +1,22 @@
+import java.util.Stack;
+
+class Solution {
+    public String reverseParentheses(String s) {
+        Stack<StringBuilder> stack = new Stack<>();
+        StringBuilder current = new StringBuilder();
+        
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                stack.push(current); // Store the current string before opening a new scope
+                current = new StringBuilder();
+            } else if (c == ')') {
+                StringBuilder temp = current.reverse(); // Reverse the current enclosed string
+                current = stack.pop().append(temp); // Append reversed string to the previous level
+            } else {
+                current.append(c); // Append characters normally
+            }
+        }
+        
+        return current.toString();
+    }
+}
