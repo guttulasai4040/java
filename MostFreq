@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Solution {
+    public int mostFrequent(int[] nums, int key) {
+        Map<Integer, Integer> freqMap = new HashMap<>();
+        int maxCount = 0, result = -1;
+
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == key) {
+                int target = nums[i + 1];
+                freqMap.put(target, freqMap.getOrDefault(target, 0) + 1);
+
+                if (freqMap.get(target) > maxCount) {
+                    maxCount = freqMap.get(target);
+                    result = target;
+                }
+            }
+        }
+        return result;
+    }
+}
