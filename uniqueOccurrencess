@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution {
+    public boolean uniqueOccurrences(int[] arr) {
+        Map<Integer, Integer> freqMap = new HashMap<>();
+        
+        // Count frequency of each number
+        for (int num : arr) {
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+        }
+
+        // Store all frequencies in a set
+        Set<Integer> occurrences = new HashSet<>();
+        for (int freq : freqMap.values()) {
+            if (!occurrences.add(freq)) {
+                return false; // duplicate frequency found
+            }
+        }
+
+        return true; // all frequencies are unique
+    }
+}
