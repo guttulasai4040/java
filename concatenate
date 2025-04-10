@@ -1,0 +1,9 @@
+public void concatenate(LinkedList list2) {
+    if (head == null) {
+        head = list2.head;
+        return;
+    }
+    Node temp = head;
+    while (temp.next != null) temp = temp.next;
+    temp.next = list2.head;
+}
