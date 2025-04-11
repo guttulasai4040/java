@@ -1,0 +1,6 @@
+Queue<Integer> q = new LinkedList<>();
+q.offer(1); q.offer(2); q.offer(3);
+Stack<Integer> s = new Stack<>();
+while (!q.isEmpty()) s.push(q.poll());
+while (!s.isEmpty()) q.offer(s.pop());
+System.out.println(q); // Output: [3, 2, 1]
