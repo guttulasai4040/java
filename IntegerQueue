@@ -1,0 +1,18 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class IntegerQueue {
+    public static void main(String[] args) {
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 1; i <= 5; i++) {
+            q.offer(i * 10);
+        }
+
+        System.out.println("Queue: " + q);
+
+        while (!q.isEmpty()) {
+            System.out.println("Polled: " + q.poll());
+        }
+    }
+}
